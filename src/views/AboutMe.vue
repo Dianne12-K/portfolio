@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-green-900 to-slate-800 py-16">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-pink-900 to-slate-800 py-16">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Page Header -->
       <div class="text-center mb-16">
@@ -9,18 +9,20 @@
 
       <!-- Main Content -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-        
+
         <!-- Profile Image & Quick Info -->
         <div class="lg:col-span-1">
           <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
             <!-- Profile Image Placeholder -->
-            <div class="w-48 h-48 bg-gradient-to-br from-green-400 to-blue-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-6xl">👩‍🎓</span>
+            <div class="w-48 h-48 rounded-full mx-auto mb-6 overflow-hidden border-4 border-green-400 shadow-lg">
+              <img src="/diana.jpeg" alt="Diana Khayenzeli" class="w-full h-full object-cover" />
             </div>
-            
+
+
+
             <h2 class="text-2xl font-bold text-white text-center mb-4">{{ profile.name }}</h2>
             <p class="text-green-300 text-center text-lg mb-6">{{ profile.title }}</p>
-            
+
             <!-- Quick Info -->
             <div class="space-y-3">
               <div class="flex items-center text-gray-300">
@@ -121,7 +123,8 @@
         <h3 class="text-3xl font-bold text-white text-center mb-12">My Values</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div v-for="value in values" :key="value.title" class="text-center">
-            <div class="bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center backdrop-blur-sm border border-green-500/30">
+            <div
+              class="bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center backdrop-blur-sm border border-green-500/30">
               <span class="text-3xl">{{ value.icon }}</span>
             </div>
             <h4 class="text-xl font-semibold text-white mb-3">{{ value.title }}</h4>
@@ -146,10 +149,8 @@
       <div class="mt-16 text-center">
         <h3 class="text-3xl font-bold text-white mb-6">Want to know more about my technical skills?</h3>
         <router-link to="/skills">
-          <Button 
-            label="View My Skills"
-            class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 px-8 rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 border-0"
-          />
+          <Button label="View My Skills"
+            class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 px-8 rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 border-0" />
         </router-link>
       </div>
     </div>

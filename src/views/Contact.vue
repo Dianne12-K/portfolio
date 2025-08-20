@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-green-900 to-slate-800 py-16">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-pink-900 to-slate-800 py-16">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Page Header -->
       <div class="text-center mb-16">
@@ -264,7 +264,7 @@ const budgetRanges = ref([
 // Contact information from Diana's resume
 const contactInfo = ref({
   email: 'khayenzelidianne@gmail.com',
-  phone: '+254 757 054 191',
+  phone: '+254 751 597 120',
   location: 'Nairobi, Kenya'
 })
 
