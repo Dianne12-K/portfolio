@@ -31,9 +31,14 @@
         >
           <!-- Project Image -->
           <div class="relative h-48 bg-gradient-to-br from-green-500/20 to-blue-500/20 overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-6xl">{{ project.icon }}</span>
-            </div>
+            <img 
+              v-if="project.image" 
+              :src="project.image" 
+              alt="Project Image" 
+              class="w-full h-full object-cover"
+            />
+            <div v-else class="w-full h-full bg-gray-800"></div>
+
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
             <div class="absolute top-4 right-4">
               <span class="bg-green-500/80 text-white px-3 py-1 rounded-full text-sm">{{ project.category }}</span>
@@ -83,9 +88,13 @@
             
             <!-- Project Image/Demo -->
             <div class="relative h-64 lg:h-auto bg-gradient-to-br from-green-500/20 to-blue-500/20">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-8xl">{{ featuredProject.icon }}</span>
-              </div>
+              <img 
+                v-if="featuredProject.image" 
+                :src="featuredProject.image" 
+                alt="Featured Project Image" 
+                class="w-full h-full object-cover"
+              />
+              <div v-else class="w-full h-full bg-gray-800"></div>
             </div>
             
             <!-- Project Details -->
@@ -183,19 +192,20 @@ import Button from 'primevue/button'
 // Filter state
 const activeFilter = ref('All')
 
-// Project categories based on Diana's expertise
+// Project categories
 const categories = ref(['All', 'GIS Analysis', 'Web Development', 'Remote Sensing', 'Surveying'])
 
-// Projects based on Diana's actual experience and skills
+// Projects
 const projects = ref([
+  
   {
     id: 1,
-    title: 'Land Information Management System',
-    description: 'Comprehensive LIMS built with Vue 3 and PrimeVue for client data management and land administration.',
-    category: 'Web Development',
-    technologies: ['Vue.js', 'Pinia', 'PrimeVue', 'PostgreSQL'],
-    icon: '🗂️',
-    demoUrl: '#',
+    title: 'Kenya Land Surface Temperature Analysis (2005-2023)',
+    description: 'Interactive LST analysis across Kenya using MODIS satellite data spanning nearly two decades. Enables temporal comparison, statistical analysis, and trend visualization for climate research.',
+    category: 'Remote Sensing',
+    technologies: ['Google Earth Engine', 'MODIS MOD11A2', 'JavaScript', 'Time Series Analysis'],
+    image: '/lst.jpg',
+    demoUrl: 'https://dianakhayenzeli.users.earthengine.app/view/land-surface-temperature',
     githubUrl: '#'
   },
   {
@@ -204,7 +214,7 @@ const projects = ref([
     description: 'Spatial analysis project identifying flood-prone zones using satellite data and field surveys.',
     category: 'GIS Analysis',
     technologies: ['QGIS', 'Google Earth Engine', 'Python', 'Remote Sensing'],
-    icon: '🌊',
+    image: null,
     demoUrl: '#',
     githubUrl: '#'
   },
@@ -214,7 +224,7 @@ const projects = ref([
     description: 'Precision cadastral surveys for 100+ land parcels using RTK-GPS and total station equipment.',
     category: 'Surveying',
     technologies: ['RTK-GPS', 'Total Station', 'AutoCAD', 'ArcGIS'],
-    icon: '📏',
+    image: null,
     demoUrl: '#',
     githubUrl: '#'
   },
@@ -224,7 +234,7 @@ const projects = ref([
     description: 'Automated land use/land cover classification using satellite imagery and machine learning.',
     category: 'Remote Sensing',
     technologies: ['Google Earth Engine', 'Python', 'Sentinel-2', 'QGIS'],
-    icon: '🛰️',
+    image: null,
     demoUrl: '#',
     githubUrl: '#'
   },
@@ -234,7 +244,7 @@ const projects = ref([
     description: 'Automated water body mapping using remote sensing techniques for environmental monitoring.',
     category: 'Remote Sensing',
     technologies: ['Google Earth Engine', 'Landsat', 'QGIS', 'Python'],
-    icon: '💧',
+    image: null,
     demoUrl: '#',
     githubUrl: '#'
   },
@@ -244,7 +254,7 @@ const projects = ref([
     description: 'Digital mapping of 500+ sites for enhanced geospatial accessibility and water resource tracking.',
     category: 'GIS Analysis',
     technologies: ['QGIS', 'GPS', 'Google Plus Codes', 'Field Mapping'],
-    icon: '📍',
+    image: null,
     demoUrl: '#',
     githubUrl: '#'
   },
@@ -252,10 +262,10 @@ const projects = ref([
     id: 7,
     title: 'Groundwater Potential Analysis',
     description: 'Multi-criteria analysis for groundwater potential zone mapping in semi-arid regions.',
-    category: 'GIS Analysis',
-    technologies: ['ArcGIS', 'Remote Sensing', 'Python', 'Spatial Analysis'],
-    icon: '⛽',
-    demoUrl: '#',
+    category: 'Remote Sensing',
+    technologies: ['Google Earth Engine', 'Remote Sensing', 'CHIRPS','SRTM','GLiM global lithology', 'Java Script', 'Spatial Analysis'],
+    image: '/gwater.jpg',
+    demoUrl: 'https://healthfacilities.projects.earthengine.app/view/groundwater-potential-analysis',
     githubUrl: '#'
   },
   {
@@ -264,18 +274,28 @@ const projects = ref([
     description: 'Geospatial mapping of educational infrastructure to support HPV microplanning initiatives.',
     category: 'GIS Analysis',
     technologies: ['QGIS', 'OpenStreetMap', 'Field Mapping', 'Health GIS'],
-    icon: '🏫',
+    image: null,
     demoUrl: '#',
+    githubUrl: '#'
+  },
+  {
+    id: 9,
+    title: 'Kakamega County NDVI Analysis',
+    description: 'Interactive vegetation monitoring system tracking NDVI trends throughout 2024, revealing seasonal patterns and ecosystem health.',
+    category: 'Remote Sensing',
+    technologies: ['Google Earth Engine', 'Sentinel-2', 'JavaScript', 'Time Series Analysis'],
+    image: '/ndvi.jpg',
+    demoUrl: 'https://healthfacilities.projects.earthengine.app/view/kakamega-county-ndvi-analysis',
     githubUrl: '#'
   }
 ])
 
-// Featured project - Land Information Management System
+// Featured project
 const featuredProject = ref({
   title: 'Land Information Management System (LIMS)',
   description: 'A comprehensive client management system designed for land administration and geospatial data management. Built with modern web technologies to streamline land information processes, improve data accessibility, and support decision-making in land management.',
   category: 'Web Development',
-  icon: '🗺️',
+  image: null, // you can set e.g. '/lims.jpg' later
   technologies: ['Vue.js 3', 'Pinia', 'PrimeVue', 'PostgreSQL', 'Node.js', 'Spatial SQL'],
   features: [
     'Interactive land parcel visualization',
@@ -289,7 +309,7 @@ const featuredProject = ref({
   githubUrl: '#'
 })
 
-// Project statistics based on Diana's resume
+// Stats
 const projectStats = ref([
   { icon: '🗺️', value: '15+', label: 'Mapping Projects' },
   { icon: '📊', value: '500+', label: 'Sites Mapped' },
@@ -297,7 +317,7 @@ const projectStats = ref([
   { icon: '🏆', value: '3+', label: 'Special Assignments' }
 ])
 
-// Computed property for filtered projects
+// Filter
 const filteredProjects = computed(() => {
   if (activeFilter.value === 'All') {
     return projects.value
@@ -305,9 +325,8 @@ const filteredProjects = computed(() => {
   return projects.value.filter(project => project.category === activeFilter.value)
 })
 
-// Method to handle external links
+// Link handler
 const openLink = (url) => {
-  console.log('Opening:', url)
-  // In a real application: window.open(url, '_blank')
+  window.open(url, '_blank')
 }
 </script>
